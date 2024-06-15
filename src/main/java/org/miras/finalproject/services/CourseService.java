@@ -1,7 +1,8 @@
 package org.miras.finalproject.services;
 
 import org.miras.finalproject.DTOs.CourseDTO;
-import org.miras.finalproject.DTOs.TaskDTO;
+import org.miras.finalproject.DTOs.GetTaskDTO;
+import org.miras.finalproject.models.Course;
 import org.miras.finalproject.models.Task;
 import org.miras.finalproject.repositories.CourseRepository;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,12 @@ public class CourseService {
         return courseRepository.findAll().stream().map(CourseDTO::new).toList();
     }
 
-    public List<TaskDTO> getCourseTasks(Long id) {
+    public List<GetTaskDTO> getCourseTasks(Long id) {
         Set<Task> tasks = courseRepository.findTasksByCourseId(id);
-        return tasks.stream().map(TaskDTO::new).collect(Collectors.toList());
+        return tasks.stream().map(GetTaskDTO::new).collect(Collectors.toList());
+    }
+
+    public Course findCourseById(Long id) {
+        return courseRepository.findById(id).orElse(null);
     }
 }

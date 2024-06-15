@@ -9,12 +9,12 @@ import org.miras.finalproject.models.TaskStatus;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskDTO {
+public class GetTaskDTO {
     private Long id;
     private String title;
     private TaskStatus status;
 
-    public TaskDTO(Task task) {
+    public GetTaskDTO(Task task) {
         this.id = task.getId();
         this.title = task.getTitle();
         this.status = task.getStatus();
