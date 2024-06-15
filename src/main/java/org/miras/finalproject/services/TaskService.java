@@ -18,8 +18,5 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public List<TaskDTO> getTasks() {
-        List<Task> tasks = taskRepository.findAll();
-        return tasks.stream().map(TaskDTO::new).toList();
-    }
+
 }

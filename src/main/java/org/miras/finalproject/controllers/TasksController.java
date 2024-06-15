@@ -20,9 +20,4 @@ public class TasksController {
     public TasksController(TaskService taskService) {
         this.taskService = taskService;
     }
-
-    @GetMapping("")
-    public List<TaskDTO> getTasks() {
-        return taskService.getTasks();
-    }
 }

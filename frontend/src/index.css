@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  background-color: #08032d;
+  color: white;
+  min-height: 100vh;
+  padding: 32px 28px 32px 28px;
+  @apply font-sans;
+}
