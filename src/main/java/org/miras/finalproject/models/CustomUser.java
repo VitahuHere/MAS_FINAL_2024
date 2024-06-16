@@ -3,6 +3,7 @@ package org.miras.finalproject.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.miras.finalproject.repositories.AccessRepository;
 import org.miras.finalproject.validation.NotFutureDate;
 import org.miras.finalproject.validation.ValidBankNumber;
 
@@ -152,5 +153,19 @@ public class CustomUser {
 
     public void makeStudent() {
         roles.add(UserRole.STUDENT);
+    }
+
+    public List<Opinion> getCourseOpinions(Course course){
+        if (!roles.contains(UserRole.LECTURER)) {
+            throw new IllegalArgumentException("Only lecturer can get course opinions");
+        }
+        return course.getOpinions().stream().toList();
+    }
+
+    public List<Opinion> getStudentOpinions(){
+        if (!roles.contains(UserRole.STUDENT)) {
+            throw new IllegalArgumentException("Only student can get student opinions");
+        }
+        return opinions.stream().toList();
     }
 }
