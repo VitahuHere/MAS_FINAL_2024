@@ -126,7 +126,13 @@ export default function AddTaskScreen() {
     <div className="flex flex-col h-full w-full">
       <div className="relative flex items-center w-full">
         <div className="flex flex-row items-center z-10">
-          <img src="/rubber-duck.png" alt="Rubber Duck" className="w-[178px]" />
+          <Link to={"/"}>
+            <img
+              src="/rubber-duck.png"
+              alt="Rubber Duck"
+              className="w-[178px]"
+            />
+          </Link>
           <button onClick={() => navigate(-1)} className="w-24 h-24">
             <img src="/left-arrow.png" alt="Left Arrow" />
           </button>
