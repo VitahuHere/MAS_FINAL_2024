@@ -12,6 +12,7 @@ export default function CustomTableCell(props: any) {
         borderRight: "1px solid #ffffff",
         paddingTop: "6px",
         paddingBottom: "6px",
+        cursor: "pointer",
       }}
       {...props}
     >

@@ -7,14 +7,19 @@ import {
   TableRow,
 } from "@mui/material";
 import CustomTableCell from "./CustomTableCell.tsx";
+import { useNavigate } from "react-router-dom";
 
 export default function DataTable({
   headers,
   data,
+  redirectPaths,
 }: {
   headers: any[];
   data: any[];
+  redirectPaths?: string[];
 }) {
+  const navigate = useNavigate();
+
   return (
     <TableContainer
       component={Paper}
@@ -30,21 +35,29 @@ export default function DataTable({
                 align={header.align}
                 text={header.name}
                 width={header.width}
+                key={header.name}
               />
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row, rowIndex) => (
-            <TableRow key={rowIndex}>
-              {headers.map((header, colIndex) => (
-                <CustomTableCell
-                  key={colIndex}
-                  align={header.align}
-                  text={row[Object.keys(row)[colIndex]]}
-                  width={header.width}
-                />
-              ))}
+            <TableRow
+              key={rowIndex}
+              onClick={() =>
+                redirectPaths ? navigate(redirectPaths[rowIndex]) : null
+              }
+            >
+              {headers.map((header, colIndex) => {
+                return (
+                  <CustomTableCell
+                    key={colIndex}
+                    align={header.align}
+                    text={row[Object.keys(row)[colIndex]]}
+                    width={header.width}
+                  />
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>

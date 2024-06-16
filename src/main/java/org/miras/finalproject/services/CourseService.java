@@ -1,6 +1,7 @@
 package org.miras.finalproject.services;
 
 import org.miras.finalproject.DTOs.CourseDTO;
+import org.miras.finalproject.DTOs.CourseDetailsDTO;
 import org.miras.finalproject.DTOs.GetTaskDTO;
 import org.miras.finalproject.models.Course;
 import org.miras.finalproject.models.Task;
@@ -28,6 +29,14 @@ public class CourseService {
     public List<GetTaskDTO> getCourseTasks(Long id) {
         Set<Task> tasks = courseRepository.findTasksByCourseId(id);
         return tasks.stream().map(GetTaskDTO::new).collect(Collectors.toList());
+    }
+
+    public CourseDetailsDTO getCourseDetails(Long id) {
+        Course course = courseRepository.findById(id).orElse(null);
+        if (course == null) {
+            return null;
+        }
+        return new CourseDetailsDTO(course);
     }
 
     public Course findCourseById(Long id) {

@@ -7,7 +7,6 @@ import org.miras.finalproject.validation.NotFutureDate;
 import org.miras.finalproject.validation.ValidBankNumber;
 
 import java.math.BigDecimal;
-import java.security.MessageDigest;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -145,5 +144,13 @@ public class CustomUser {
         return courses.stream()
                 .sorted(Comparator.comparing(Course::getUpdatedAt).reversed())
                 .toList();
+    }
+
+    public void makeLecturer() {
+        roles.add(UserRole.LECTURER);
+    }
+
+    public void makeStudent() {
+        roles.add(UserRole.STUDENT);
     }
 }

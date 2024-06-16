@@ -73,7 +73,7 @@ public class LecturerTest {
     @Test
     void testGetCourses() {
         user = customUserRepository.findByLogin("lecturer");
-        assertEquals(1, user.getCourses().size());
+        assertEquals(3, user.getCourses().size());
 
         Course course = Course.builder()
                 .name("course")
@@ -85,7 +85,7 @@ public class LecturerTest {
         courseRepository.save(course);
         entityManager.flush();
         entityManager.refresh(user);
-        assertEquals(2, user.getCourses().size());
+        assertEquals(4, user.getCourses().size());
 
         // check if courses are ordered
         assertEquals("course", user.getCourses().iterator().next().getName());

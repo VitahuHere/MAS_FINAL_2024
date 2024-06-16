@@ -1,6 +1,7 @@
 package org.miras.finalproject.controllers;
 
 import org.miras.finalproject.DTOs.CourseDTO;
+import org.miras.finalproject.DTOs.CourseDetailsDTO;
 import org.miras.finalproject.DTOs.GetTaskDTO;
 import org.miras.finalproject.DTOs.PostTaskDTO;
 import org.miras.finalproject.models.Course;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
+@CrossOrigin(origins = {"*"})
 public class CourseController {
     private final CourseService courseService;
     private final TaskService taskService;
@@ -25,6 +27,11 @@ public class CourseController {
     @GetMapping("")
     public List<CourseDTO> getCourses() {
         return courseService.getCourses();
+    }
+
+    @GetMapping("/{id}")
+    public CourseDetailsDTO getCourse(@PathVariable Long id) {
+        return courseService.getCourseDetails(id);
     }
 
     @GetMapping("/{id}/tasks")

@@ -1,14 +1,12 @@
 package org.miras.finalproject.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Range;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,4 +20,15 @@ public abstract class Tutorial {
 
     @Range(min = 1, max = 10)
     private int difficulty;
+
+    @ManyToMany
+    @JoinTable(
+            name = "course_tutorial",
+            joinColumns = @JoinColumn(name = "tutorial_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
+    Set<Course> courses = new HashSet<>();
 }

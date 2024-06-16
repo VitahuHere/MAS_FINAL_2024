@@ -27,7 +27,7 @@ public class OpinionTest {
     void testCreateOpinion(){
         Access access = accessRepository.findById(10001L).orElse(null);
         Opinion opinion = Opinion.builder()
-                .rate(5)
+                .score(5)
                 .comment("Great course")
                 .student(access.getStudent())
                 .course(access.getCourse())

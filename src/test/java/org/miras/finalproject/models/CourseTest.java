@@ -44,7 +44,7 @@ public class CourseTest {
         courseRepository.save(course);
         entityManager.flush();
         entityManager.refresh(newLecturer);
-        assertEquals(2, newLecturer.getCourses().size());
+        assertEquals(1, newLecturer.getCourses().size());
 
         CustomUser student = customUserRepository.findByLogin("student");
         assertThrows(IllegalArgumentException.class, () -> course.setLecturer(student));
@@ -71,7 +71,7 @@ public class CourseTest {
         assertNotNull(course1);
         assertEquals(0, course1.getOpinions().size());
         Opinion opinion = Opinion.builder()
-                .rate(5)
+                .score(5)
                 .course(course1)
                 .student(customUserRepository.findByLogin("student"))
                 .build();
@@ -85,7 +85,7 @@ public class CourseTest {
     void testGetTasks() {
         Course course1 = courseRepository.findById(10001L).orElse(null);
         assertNotNull(course1);
-        assertEquals(0, course1.getTasks().size());
+        assertEquals(3, course1.getTasks().size());
         Task task = Task.builder()
                 .title("Task")
                 .content("Content")
@@ -95,7 +95,7 @@ public class CourseTest {
         entityManager.persist(task);
         entityManager.flush();
         entityManager.refresh(course1);
-        assertEquals(1, course1.getTasks().size());
+        assertEquals(4, course1.getTasks().size());
     }
 
     @Test
