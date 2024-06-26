@@ -1,24 +1,8 @@
 import Navbar from "../Navbar.tsx";
 import ListContainer from "../ListContainer.tsx";
-import { Link } from "react-router-dom";
-
-const tasks = [
-  {
-    id: 1,
-    title: "Task 1",
-    status: "Done",
-  },
-  {
-    id: 2,
-    title: "Task 2",
-    status: "In progress",
-  },
-  {
-    id: 3,
-    title: "Task 3",
-    status: "To do",
-  },
-];
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getTasks } from "../../services/TaskService.ts";
 
 const headers = [
   { name: "ID", align: "left", width: "5%" },
@@ -27,6 +11,14 @@ const headers = [
 ];
 
 export default function TaskManagementScreen() {
+  const [tasks, setTasks] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    getTasks(Number(id)).then((data) => {
+      setTasks(data);
+    });
+  }, []);
+
   return (
     <div className="flex flex-col h-full items-center">
       <Navbar title={"Java 101"} />

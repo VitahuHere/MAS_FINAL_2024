@@ -29,7 +29,7 @@ export default function CourseManageScreen({ addTask }: { addTask?: boolean }) {
       setCourses(courses);
       const paths = response.map((course) => {
         return addTask
-          ? `/courses/${course.id}/tasks/add`
+          ? `/courses/${course.id}/tasks/`
           : `/courses/${course.id}`;
       });
       setPaths(paths);
